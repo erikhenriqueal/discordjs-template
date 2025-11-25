@@ -9,3 +9,4 @@ test.*
 .env.*
 .editorconfig
 yarn.lock
+package-lock.json

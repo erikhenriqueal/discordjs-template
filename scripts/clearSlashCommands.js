@@ -1,24 +1,29 @@
-const { config: _envConfig } = require('dotenv')
-const { resolve } = require('path')
-const { existsSync } = require('fs')
-const isProduction = process.env.NODE_ENV === 'production'
-const dynamicEnvFile = resolve(process.cwd(), isProduction ? './.env.production' : './.env.development')
-const envFile = existsSync(dynamicEnvFile) ? dynamicEnvFile : resolve(process.cwd(), './.env')
-if (!existsSync(envFile)) throw new Error('Can\'t find .env file')
-_envConfig({ path: existsSync(envFile) ? envFile : '.env' })
+const { config: _envConfig } = require("dotenv");
+const { resolve } = require("path");
+const { existsSync } = require("fs");
+const isProduction = process.env.NODE_ENV === "production";
 
+const dynamicEnvFile = resolve(
+	process.cwd(),
+	isProduction ? "./.env.production" : "./.env.development"
+);
+const envFile = existsSync(dynamicEnvFile)
+	? dynamicEnvFile
+	: resolve(process.cwd(), "./.env");
 
+if (!existsSync(envFile)) throw new Error("Can't find .env file");
 
-const { Client } = require('discord.js')
+_envConfig({ path: envFile });
 
-const client = new Client({ intents: [ 'Guilds' ]})
+const { Client } = require("discord.js");
 
-client.once('ready', async client => {
-  await client.application.commands.set([])
-  .then(() => {
-    console.log(`Cleared commands from '${client.user.username}'`)
-  })
-  await client.destroy()
-})
+const client = new Client({ intents: ["Guilds"] });
 
-client.login(process.env['BOT_TOKEN'])
+client.once("clientReady", async (client) => {
+	await client.application.commands.set([]).then(() => {
+		console.log(`Cleared commands from '${client.user.username}'`);
+	});
+	await client.destroy();
+});
+
+client.login(process.env["BOT_TOKEN"]);

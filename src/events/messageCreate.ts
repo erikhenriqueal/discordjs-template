@@ -16,7 +16,7 @@ const event = new ClientEvent("messageCreate").setListener(async (message) => {
 	if (message.content === message.client.user.toString())
 		return await message.reply({
 			content: [
-				`> Hello ${user}. This is the automatic message from [Discord.Js TypeScript Template by Erik H. A. Lima](https://github.com/erikhuda/discordjs-template)`,
+				`> Hello ${user}. This is the automatic message from [Discord.Js TypeScript Template by Erik H. A. Lima](https://github.com/erikhenriqueal/discordjs-template)`,
 				`> My prefix for commands is \`${getClientConfig(
 					"message_commands_prefix"
 				)}\`.`,
@@ -81,6 +81,8 @@ const event = new ClientEvent("messageCreate").setListener(async (message) => {
 
 			for (let i = 0; i < args.length; i++) {
 				const optLabel: string = command.chatMessageOptionsIndex[i];
+				if (!optLabel) break;
+
 				const restOption = optLabel.startsWith("...");
 				const optName = restOption ? optLabel.slice(3) : optLabel;
 

@@ -67,11 +67,15 @@ export default new ClientCommand({
 			content:
 				localizedText(
 					{
-						"pt-BR": `> Olá, ${user.toString()}! Aqui está a lista de comandos disponíveis:\n\n${commandList}`,
+						"pt-BR": `> Olá, ${user.toString()}! Aqui está a lista de comandos disponíveis:\n\n${commandList.join(
+							"\n"
+						)}`,
 					},
 					userLang
 				) ||
-				`> Hello, ${user.toString()}! Here is the list of available commands:\n\n${commandList}`,
+				`> Hello, ${user.toString()}! Here is the list of available commands:\n\n${commandList.join(
+					"\n"
+				)}`,
 			ephemeral: true,
 		});
 	},

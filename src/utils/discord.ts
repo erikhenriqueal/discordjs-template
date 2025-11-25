@@ -1,3 +1,12 @@
+/**
+ * List of privileged intents in Discord.js until 24th November 2025
+ */
+export const PrivilegedIntents = [
+	"GuildPresences",
+	"MessageContent",
+	"GuildMembers",
+];
+
 export const snowflakeIdBase = "\\d{17,20}";
 export const SNOWFLAKE_ID_REGEXP = new RegExp(`^${snowflakeIdBase}$`);
 export const CHANNEL_STRING_REGEXP = new RegExp(`^<#${snowflakeIdBase}>$`);

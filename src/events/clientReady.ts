@@ -53,11 +53,13 @@ export function rotateActivities(client: Client<true>, time?: number) {
 	}, activitiesRotationInterval);
 }
 
-const ready = new ClientEvent("ready", true).setListener(async (client) => {
-	ready.log(`Hey, I'm ${client.user.username}!`);
+const clientReady = new ClientEvent("clientReady", true).setListener(
+	async (client) => {
+		clientReady.log(`Hey, I'm ${client.user.username}!`);
 
-	rotateActivities(client);
-	await handleSlashCommands(client);
-});
+		rotateActivities(client);
+		await handleSlashCommands(client);
+	}
+);
 
-export default ready;
+export default clientReady;
