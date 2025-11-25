@@ -1,60 +1,62 @@
 {
-  "type": "object",
-  "properties": {
-    "intents": {
-      "type": "array",
-      "minItems": 1,
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "enum": [
-          "AutoModerationConfiguration",
-          "AutoModerationExecution",
-          "DirectMessageReactions",
-          "DirectMessageTyping",
-          "DirectMessages",
-          "GuildBans",
-          "GuildEmojisAndStickers",
-          "GuildIntegrations",
-          "GuildInvites",
-          "GuildMembers",
-          "GuildMessageReactions",
-          "GuildMessageTyping",
-          "GuildMessages",
-          "GuildModeration",
-          "GuildPresences",
-          "GuildScheduledEvents",
-          "GuildVoiceStates",
-          "GuildWebhooks",
-          "Guilds",
-          "MessageContent"
-        ]
-      }
-    },
-    "activities": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "integer",
-            "description": "Activity Type. Available Types for Bots:\n- `0` -> `Playing`\n- `1` -> `Streaming`\n- `2` -> `Listening`\n- `3` -> `Watching`\n- `5` -> `Competing`\nObs: `4` (`Custom`) is not available for bots.",
-            "enum": [ 0, 1, 2, 3, 5 ]
-          },
-          "name": {
-            "type": "string",
-            "description": "See variables at /src/events/ready.ts (inside 'replaceActivitiesVariables' function)"
-          },
-          "shardId": { "type": "integer" },
-          "url": {
-            "type": "string",
-            "description": "See variables at /src/events/ready.ts (inside 'replaceActivitiesVariables' function)"
-          }
-        },
-        "required": [ "type", "name" ]
-      }
-    },
-    "message_commands_prefix": { "type": "string" }
-  },
-  "required": [ "intents" ]
+	"type": "object",
+	"properties": {
+		"intents": {
+			"type": "array",
+			"minItems": 1,
+			"uniqueItems": true,
+			"items": {
+				"type": "string",
+				"enum": [
+					"AutoModerationConfiguration",
+					"AutoModerationExecution",
+					"DirectMessageReactions",
+					"DirectMessageTyping",
+					"DirectMessages",
+					"GuildBans",
+					"GuildEmojisAndStickers",
+					"GuildIntegrations",
+					"GuildInvites",
+					"GuildMembers",
+					"GuildMessageReactions",
+					"GuildMessageTyping",
+					"GuildMessages",
+					"GuildModeration",
+					"GuildPresences",
+					"GuildScheduledEvents",
+					"GuildVoiceStates",
+					"GuildWebhooks",
+					"Guilds",
+					"MessageContent"
+				]
+			}
+		},
+		"activities": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "integer",
+						"description": "Activity Type. Available Types for Bots:\n0 -> Playing\n1 -> Streaming\n2 -> Listening\n3 -> Watching\n5 -> Competing\nObs: 4 (Custom) is not available for bots.",
+						"enum": [0, 1, 2, 3, 5]
+					},
+					"name": {
+						"type": "string",
+						"description": "See variables at /src/events/ready.ts (inside 'replaceActivitiesVariables' function)"
+					},
+					"shardId": { "type": "integer" },
+					"url": {
+						"type": "string",
+						"description": "See variables at /src/events/ready.ts (inside 'replaceActivitiesVariables' function)"
+					}
+				},
+				"required": ["type", "name"]
+			}
+		},
+		"message_commands_prefix": { "type": "string" },
+		"rotate_activities": { "type": "boolean" },
+		"rotate_activities_interval": { "type": "number", "minimum": 5000 }
+	},
+	"required": ["intents"]
 }

@@ -1,11 +1,15 @@
-import './utils/loadEnv'
-import { getClientConfig } from './utils/clientConfig'
+import "./utils/loadEnv";
 
-import { Client } from 'discord.js'
-const client = new Client({ intents: getClientConfig('intents') })
+console.log("Bot iniciado."); // Necessary for some hosting services such as HaskHosting
+if (process.env["DEV_ONLY"] === "true") console.log("Dev Only Mode Activated");
 
-import { handleEvents } from './handlers/eventsHandler'
+import { getClientConfig } from "./utils/clientConfig";
 
-handleEvents(client)
+import { Client } from "discord.js";
+const client = new Client({ intents: getClientConfig("intents") });
 
-client.login(process.env['BOT_TOKEN'])
+import { handleEvents } from "./handlers/eventsHandler";
+
+handleEvents(client);
+
+client.login(process.env["BOT_TOKEN"]);

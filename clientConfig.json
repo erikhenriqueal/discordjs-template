@@ -1,17 +1,38 @@
 {
-  "$schema": "./clientConfig.schema.json",
-  "intents": [
-    "DirectMessages",
-    "GuildMessages",
-    "Guilds",
-    "MessageContent"
-  ],
-  "message_commands_prefix": "!",
-  "rotate_activities": true,
-  "activities": [
-    {
-      "type": 0,
-      "name": "Olá, sou {client-username}!"
-    }
-  ]
+	"$schema": "./clientConfig.schema.json",
+	"intents": [
+		"AutoModerationConfiguration",
+		"AutoModerationExecution",
+		"DirectMessageReactions",
+		"DirectMessageTyping",
+		"DirectMessages",
+		"Guilds",
+		"GuildBans",
+		"GuildEmojisAndStickers",
+		"GuildIntegrations",
+		"GuildInvites",
+		"GuildMembers",
+		"GuildMessageReactions",
+		"GuildMessageTyping",
+		"GuildMessages",
+		"GuildModeration",
+		"GuildPresences",
+		"GuildScheduledEvents",
+		"GuildVoiceStates",
+		"GuildWebhooks",
+		"MessageContent"
+	],
+	"message_commands_prefix": "l.",
+	"rotate_activities": true,
+	"rotate_activities_interval": 30e3,
+	"activities": [
+		{
+			"type": 2,
+			"name": "@{client-username}"
+		},
+		{
+			"type": 2,
+			"name": "/help"
+		}
+	]
 }

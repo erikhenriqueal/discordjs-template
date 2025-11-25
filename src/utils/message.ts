@@ -1,8 +1,12 @@
-import { InteractionReplyOptions, LocaleString, MessagePayload, MessageReplyOptions } from 'discord.js'
+import { Locale } from "discord.js";
 
-export type MessageContentTypes = string | MessagePayload | MessageReplyOptions | (InteractionReplyOptions & { fetchReply?: true; });
-export type MultilanguageMessages<T extends MessageContentTypes> = { [key in LocaleString]?: T; };
-export function multilangMessage<T extends MessageContentTypes = MessageContentTypes>(messages: MultilanguageMessages<T>, lang?: LocaleString): T | undefined {
-  if (lang && lang in messages) return messages[lang]
-  return undefined
+export type MultilanguageMessages = {
+	[key in Locale]?: string;
+};
+export function localizedText(
+	localizations: MultilanguageMessages,
+	lang?: Locale
+): string | undefined {
+	if (lang && lang in localizations) return localizations[lang];
+	return undefined;
 }

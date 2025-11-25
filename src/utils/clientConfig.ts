@@ -1,50 +1,37 @@
-import fs from 'fs'
-import path from 'path'
+import { GatewayIntentsString } from "discord.js";
+import { resolve } from "path";
+import Config from "./useConfig";
 
-const cfgPath = path.resolve(process.cwd(), 'clientConfig.json')
-
-function checkCfgPath() {
-  if (!fs.existsSync(cfgPath)) throw new Error('Can\'t find \'clientConfig.json\' file')
-}
-function resolveCfg(callback: (cfgData: {[key: string]: any} | null) => any) {
-  const raw = fs.readFileSync(cfgPath, { encoding: 'utf8' })
-  let resolved = null
-  try {
-    resolved = JSON.parse(raw)
-  } catch (e) {
-    console.error(`[ Utils - clientConfig ] Failed to process 'clientConfig.json'.`)
-  }
-
-  return callback(resolved)
+export interface BaseClientConfigData {
+	intents: GatewayIntentsString[];
+	message_commands_prefix?: string;
+	activities: [];
+	rotate_activities?: boolean;
+	rotate_activities_interval?: number;
 }
 
-export function getClientConfig(key?: string): any {
-  checkCfgPath()
+export type ClientConfigData<T = { [key: string]: any }> =
+	BaseClientConfigData & T;
 
-  return resolveCfg(cfg => {
-    if (!cfg) return null
-    if (!key) return cfg
-    else return cfg[key]
-  })
+const clientConfig = new Config<ClientConfigData>(
+	resolve(process.cwd(), "clientConfig.json"),
+	{ watch: true }
+);
+export default clientConfig;
+
+export function getClientConfig<T>(key: string): T {
+	if (
+		key === "message_commands_prefix" &&
+		process.env["DEV_ONLY"] === "true" &&
+		process.env["DEV_ONLY_PREFIX"]?.length != 0
+	) {
+		return process.env["DEV_ONLY_PREFIX"] as T;
+	}
+	return clientConfig.get(key);
 }
 
-export function updateClientConfig(data: {[key: string]: any}): boolean {
-  checkCfgPath()
-
-  return resolveCfg(cfg => {
-    if (!cfg) return false
-    if (Object.getPrototypeOf(cfg) !== Object.prototype) return false
-
-    const newCfg = {
-      ...cfg,
-      ...data
-    }
-
-    try {
-      fs.writeFileSync(cfgPath, JSON.stringify(newCfg, null, 2), { encoding: 'utf-8' })
-      return true
-    } catch (e) {
-      return false
-    }
-  })
+export function updateClientConfig(
+	newData: ClientConfigData<{ [key: string]: any }>
+): boolean {
+	return clientConfig.update(newData);
 }

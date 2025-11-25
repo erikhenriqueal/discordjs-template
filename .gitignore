@@ -1,11 +1,11 @@
 node_modules
 dist
 
-test.ts
-test.js
+queries.sql
+*.rar
+*.zip
+test.*
 .env
-.env.development
-.env.production
+.env.*
 .editorconfig
 yarn.lock
-package-lock.json

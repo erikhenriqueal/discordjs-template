@@ -2,7 +2,6 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ESNext",
-    "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,7 +11,7 @@
   "exclude": ["./node_modules", "./dist"],
   "include": ["./src/**/*.ts" ],
   "ts-node": {
-    "transpileOnly": true, 
-    "swc": true
+    "transpileOnly": true,
+    "transpiler": "sucrase/ts-node-plugin"
   }
 }

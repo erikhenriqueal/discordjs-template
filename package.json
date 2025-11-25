@@ -1,37 +1,51 @@
 {
-  "name": "djs-template",
-  "version": "2.0.0",
-  "description": "Discord.js v14 Bot Template",
-  "license": "ISC",
-  "author": {
-    "name": "Erik H. A. Lima",
-    "email": "privado.erikhenrique@gmail.com",
-    "url": "https://github.com/erikhenriqueal"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "install-packages": "npm install typescript dotenv discord.js@14 remove-accents && npm i -D @types/node sucrase",
-    "build": "tsc",
-    "commit": "git add * && git commit --",
-    "postcommit": "git push -u origin main",
-    "prestart": "npm run build",
-    "start": "set NODE_ENV=production&&node .",
-    "poststart": "npm run clear-slash-commands",
-    "dev": "set NODE_ENV=development&&sucrase-node src/index.ts",
-    "clear-slash-commands": "set NODE_ENV=production&&node clearSlashCommands.js",
-    "clear-slash-commands-dev": "set NODE_ENV=development&&node clearSlashCommands.js",
-    "preclear-dev": "set NODE_ENV=development&&node clearSlashCommands.js",
-    "clear-dev": "npm run dev",
-    "test": "set NODE_ENV=development&&sucrase-node test.ts"
-  },
-  "dependencies": {
-    "discord.js": "^14.12.1",
-    "dotenv": "^16.4.4",
-    "remove-accents": "^0.5.0",
-    "typescript": "^5.3.3"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.19",
-    "sucrase": "^3.35.0"
-  }
+	"name": "discordjs-template",
+	"version": "2.1.0",
+	"description": "Discord.js@14 Bot Template in TypeScript",
+	"license": "ISC",
+	"author": {
+		"name": "Erik H. A. Lima",
+		"email": "erikhalima05@gmail.com",
+		"url": "https://github.com/erikhenriqueal"
+	},
+	"keywords": [
+		"discord",
+		"discord.js",
+		"bot",
+		"template",
+		"typescript",
+		"javascript"
+	],
+	"main": "dist/index.js",
+	"scripts": {
+		"setup": "npm init -y && npm install && npm run build",
+		"build": "tsc",
+		"precommit": "git add *",
+		"commit": "git commit",
+		"postcommit": "git push -u origin main",
+		"start": "set NODE_ENV=production&&node .",
+		"poststart": "npm run clear-slash-commands",
+		"dev": "set NODE_ENV=development&&tsnd --ignore-watch ./src --rs --transpile-only --transpiler sucrase/ts-node-plugin src/index.ts",
+		"dev-in-local": "set NODE_ENV=local&&tsnd --ignore-watch ./src --rs --transpile-only --transpiler sucrase/ts-node-plugin src/index.ts",
+		"dev-in-prod": "set NODE_ENV=production&&tsnd --ignore-watch ./src --rs --transpile-only --transpiler sucrase/ts-node-plugin src/index.ts",
+		"clear-slash-commands": "set NODE_ENV=production&&node ./scripts/clearSlashCommands.js",
+		"clear-slash-commands-dev": "set NODE_ENV=development&&node ./scripts/clearSlashCommands.js",
+		"preclear-dev": "set NODE_ENV=development&&node ./scripts/clearSlashCommands.js",
+		"clear-dev": "npm run dev",
+		"test": "set NODE_ENV=development&&tsnd --ignore-watch ./test.ts --rs --transpile-only --transpiler sucrase/ts-node-plugin test.ts",
+		"test-local": "set NODE_ENV=local&&tsnd --ignore-watch ./test.ts --rs --transpile-only --transpiler sucrase/ts-node-plugin test.ts"
+	},
+	"dependencies": {
+		"discord.js": "^14.25.1",
+		"dotenv": "^16.6.1",
+		"remove-accents": "^0.5.0",
+		"typescript": "^5.9.3"
+	},
+	"devDependencies": {
+		"@types/node": "^24.10.1",
+		"sucrase": "^3.35.1",
+		"ts-node": "^10.9.2",
+		"ts-node-dev": "^2.0.0"
+	},
+	"type": "commonjs"
 }
