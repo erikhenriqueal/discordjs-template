@@ -6,7 +6,7 @@
 		</a>
 		<a href="https://www.typescriptlang.org/" target="_blank"><img alt="Made with TypeScript" src="https://img.shields.io/badge/Made_with-TypeScript-3178C6?logo=typescript&logoColor=white">
 		</a>
-		<img alt="Version 2.1.0" src="https://img.shields.io/badge/Version-2.0.1-blue">
+		<img alt="Version 2.1.0" src="https://img.shields.io/badge/Version-2.1.0-blue">
 		<p><i>With ❤️, by <a href="https://github.com/erikhenriqueal">Erik Lima</a></i></p>
 	</p>
 </div>
